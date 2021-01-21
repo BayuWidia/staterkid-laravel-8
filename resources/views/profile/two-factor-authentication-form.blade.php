@@ -10,7 +10,7 @@
             @csrf
 
             <button type="submit" class="btn btn-primary">
-                {{ __('Enable Two-Factor') }}
+                @lang('Enable Two-Factor')
             </button>
         </form>
         @else
@@ -20,14 +20,14 @@
             @method('DELETE')
 
             <button type="submit" class="btn btn-danger mb-3">
-                {{ __('Disable Two-Factor') }}
+                @lang('Disable Two-Factor')
             </button>
         </form>
 
         @if(session('status') == 'two-factor-authentication-enabled')
         {{-- Show SVG QR Code, After Enabling 2FA --}}
         <p>
-            {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application.') }}
+            @lang('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application.')
         </p>
 
         <div class="mb-3">
@@ -37,7 +37,7 @@
 
         {{-- Show 2FA Recovery Codes --}}
         <p>
-            {{ __('Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.') }}
+            @lang('Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.')
         </p>
 
         <p>
@@ -51,7 +51,7 @@
             @csrf
 
             <button type="submit" class="btn btn-dark">
-                {{ __('Regenerate Recovery Codes') }}
+                @lang('Regenerate Recovery Codes')
             </button>
         </form>
         @endif

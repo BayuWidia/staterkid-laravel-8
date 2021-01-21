@@ -1,0 +1,82 @@
+<?php
+
+/**
+ * full-stack-developer
+ * @author https://github.com/BayuWidia
+ * Jakarta 01-Juli-2020
+ */
+
+namespace {{ namespace }}\_pathUrl_;
+
+// =============== start default use service ===============
+use Auth;
+use Ramsey\Uuid\Uuid;
+
+use {{ rootNamespace }}Repositories\_pathUrl_\Interfaces\{{ class }}Interfaces as {{ class }}Interfaces;
+// =============== end default use service ===============
+
+
+class {{ class }}Service
+{
+
+    /**
+    * Define Interface.
+    */
+    private ${{ classSingularLowerCase }}Interface;
+
+    public function __construct({{ class }}Interface ${{ classSingularLowerCase }}Interface)
+    {
+        $this->{{ classSingularLowerCase }}Interface = ${{ classSingularLowerCase }}Interface;
+    }
+
+
+    /**
+    * Define function custom select.
+    */
+    public function getCustom{{ class }}()
+    {
+        $result = $this->{{ classSingularLowerCase }}Interface->getCustom();
+
+        return $result;
+    }
+
+
+    /**
+    * Define function store.
+    */
+    public function store($attributes)
+    {
+
+        $params = array('id' => Uuid::uuid4(),
+                      'componentName' => $attributes->componentName);
+
+        $result = $this->{{ classSingularLowerCase }}Interface->store($params);
+
+        return $result;
+    }
+
+
+    /**
+    * Define function update.
+    */
+    public function update($attributes, $id)
+    {
+
+      $params = array('componentName' => $attributes->componentName);
+
+        $result = $this->{{ classSingularLowerCase }}Interface->update($params, $id);
+
+        return $result;
+    }
+
+
+    /**
+    * Define function destroy.
+    */
+    public function destroy($id)
+    {
+        $result = $this->{{ classSingularLowerCase }}Interface->destroy($id);
+
+        return $result;
+    }
+}

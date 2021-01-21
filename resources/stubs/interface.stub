@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * full-stack-developer
+ * @author https://github.com/BayuWidia
+ * Jakarta 01-Juli-2020
+ */
+
+namespace {{ namespace }}\_pathUrl_\Interfaces;
+
+interface {{ class }}Interface {
+
+  /**
+  * Define function custom select.
+  */
+  public function getCustom{{ class }}();
+
+  /**
+  * Define function store.
+  */
+  public function store(array $attributes);
+
+  /**
+  * Define function update.
+  */
+  public function update(array $attributes, $id);
+
+  /**
+  * Define function destroy.
+  */
+  public function destroy($id);
+
+}

@@ -1,0 +1,98 @@
+<?php
+
+/**
+ * full-stack-developer
+ * @author https://github.com/BayuWidia
+ * Jakarta 01-Juli-2020
+ */
+
+namespace {{ namespace }}\_pathUrl_;
+
+// =============== start default use repository ===============
+use Auth;
+use DB;
+
+use {{ namespace }}\_pathUrl_\Interfaces\{{ class }}Interface as {{ class }}Interface;
+use {{ rootNamespace }}Models\{{ class }};
+// =============== end default use repository ===============
+
+
+class {{ class }}Repository implements {{ class }}Interface
+{
+
+    /**
+    * Define function custom select.
+    */
+    public function getCustom{{ class }}()
+    {
+        $data = DB::select('SELECT * FROM {{ class }}');
+
+        return $data;
+    }
+
+    /**
+    * Define function custom select.
+    */
+    public function getDataById($id)
+    {
+        $data = DB::select('SELECT * FROM {{ class }} where id = "$id" ');
+
+        return $data;
+    }
+
+
+    /**
+    * Define function store.
+    */
+    public function store(array $attributes)
+    {
+        /**
+            * disini saya buat 2 pilihan silahkan gunakan yang mana saja sesuai dengan kebutuhan
+        */
+        // ======================
+        DB::transaction(function() use($attributes) {
+           $result = {{ class }}::create([
+                'component_db_name'  => $attributes->componentName,
+            ]);
+        });
+
+        // ======================
+        $result = {{ class }}::create($attributes);
+
+        return $result;
+    }
+
+
+    /**
+    * Define function update.
+    */
+    public function update(array $attributes, $id)
+    {
+        /**
+            * disini saya buat 2 pilihan silahkan gunakan yang mana saja sesuai dengan kebutuhan
+        */
+        // ======================
+        DB::transaction(function() use($attributes, $id) {
+            $set  = {{ class }}::where('id', $id)->findOrFail();
+            $set->component_db_name = $attributes->componentName;
+            $set->save();
+        });
+
+        // ======================
+        $record = {{ class }}::where('id', $id)->findOrFail();
+        $record->update($attributes);
+
+        return $record;
+    }
+
+
+    /**
+    * Define function destroy.
+    */
+    public function destroy($id)
+    {
+        $result = {{ class }}::destroy($id);
+
+        return $result;
+    }
+}

@@ -1,0 +1,703 @@
+@extends('master.layouts.master')
+
+@section('content')
+<div class="container-fluid">
+
+  <!-- start ini untuk alert dari request -->
+    <div class="row">
+      @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+           </ul>
+         </div>
+      @endif
+    </div>
+  <!-- end ini untuk alert dari request -->
+
+
+  <div class="row">
+      <div class="col-12 col-sm-12">
+        <div class="card card-orange card-tabs">
+            <div class="card-header p-0 pt-1">
+              <ul class="nav nav-tabs" id="custom-tabs-two-tab" role="tablist">
+                <li class="pt-2 px-3"><h3 class="card-title" style="color: white">Produce Generate {{ class }}</h3></li>
+                <li class="nav-item">
+                  <a class="nav-link active" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">Form Example {{ class }}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false">Table Example {{ class }}</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <div class="tab-content" id="custom-tabs-two-tabContent">
+
+                <!-- start ini tab ke 1 -->
+                <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+                  <div class="row">
+
+                       <!-- start ini untuk form data -->
+                       <div class="col-md-6">
+                         <!-- general form elements -->
+                         <div class="card card-purple">
+                           <div class="card-header">
+                             <h3 class="card-title" style="color: white">Example Form {{ class }}</h3>
+                           </div>
+                           <!-- /.card-header -->
+                           <!-- form start -->
+                           <form role="form" action="" method="">
+                             @csrf
+                             <div class="card-body">
+                               <div class="form-group">
+                                 <label for="exampleInputPassword1">Text</label>
+                                 <input type="text" class="form-control" id="" placeholder="Example Text" name="txt">
+                               </div>
+                               <div class="form-group">
+                                 <label for="exampleInputEmail1">Email Text</label>
+                                 <input type="email" class="form-control" id="" placeholder="Example Email" name="email">
+                               </div>
+                               <div class="form-group">
+                                 <label for="exampleInputPassword1">Password</label>
+                                 <input type="password" class="form-control" id="" placeholder="Example Password" name="pwd">
+                               </div>
+                               <div class="form-group">
+                                 <label for="exampleInputFile">File input</label>
+                                 <div class="input-group">
+                                   <div class="custom-file">
+                                     <input type="file" class="custom-file-input" id="exampleInputFile">
+                                     <label class="custom-file-label" for="exampleInputFile" name="upd">Choose file</label>
+                                   </div>
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <label>Minimal</label>
+                                 <select class="form-control select2" style="width: 100%;" name="cmb">
+                                   <option selected="selected">Jakarta</option>
+                                   <option>Bandung</option>
+                                   <option>Tangerang</option>
+                                   <option>Bekasi</option>
+                                   <option>Depok</option>
+                                   <option>Bogor</option>
+                                   <option>Karawang</option>
+                                 </select>
+                               </div>
+                               <div class="form-group">
+                                 <label>Multiple</label>
+                                 <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" name="cmbMultiple">
+                                   <option>Jakarta</option>
+                                   <option>Bandung</option>
+                                   <option>Tangerang</option>
+                                   <option>Bekasi</option>
+                                   <option>Depok</option>
+                                   <option>Bogor</option>
+                                   <option>Karawang</option>
+                                 </select>
+                               </div>
+                               <div class="form-group">
+                                  <label>Example Date:</label>
+                                    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" name="dtb"/>
+                                        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                               </div>
+                               <div class="form-group">
+                                   <label>Date range:</label>
+                                   <div class="input-group">
+                                     <div class="input-group-prepend">
+                                       <span class="input-group-text">
+                                         <i class="far fa-calendar-alt"></i>
+                                       </span>
+                                     </div>
+                                     <input type="text" class="form-control float-right" id="reservation" name="dtbRange">
+                                   </div>
+                                   <!-- /.input group -->
+                               </div>
+                               <div class="form-group">
+                                 <label>Time picker:</label>
+
+                                 <div class="input-group date" id="timepicker" data-target-input="nearest">
+                                   <input type="text" class="form-control datetimepicker-input" data-target="#timepicker" name="tmb"/>
+                                   <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                                       <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                   </div>
+                                   </div>
+                                 <!-- /.input group -->
+                               </div>
+                               <div class="row">
+                                 <div class="col-sm-6">
+                                   <!-- checkbox -->
+                                   <div class="form-group">
+                                     <label for="exampleInputFile">Example Checkbox</label>
+                                     <div class="custom-control custom-checkbox">
+                                       <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1" name="cbk">
+                                       <label for="customCheckbox1" class="custom-control-label">SD</label>
+                                     </div>
+                                     <div class="custom-control custom-checkbox">
+                                       <input class="custom-control-input" type="checkbox" id="customCheckbox2" checked name="cbk">
+                                       <label for="customCheckbox2" class="custom-control-label">SLTP</label>
+                                     </div>
+                                     <div class="custom-control custom-checkbox">
+                                       <input class="custom-control-input" type="checkbox" id="customCheckbox3" disabled name="cbk">
+                                       <label for="customCheckbox3" class="custom-control-label">SMU</label>
+                                     </div>
+                                   </div>
+                                 </div>
+                                 <div class="col-sm-6">
+                                   <!-- radio -->
+                                   <div class="form-group">
+                                     <label for="exampleInputFile">Example Radio</label>
+                                     <div class="custom-control custom-radio">
+                                       <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" name="rdb">
+                                       <label for="customRadio1" class="custom-control-label">Laki-laki</label>
+                                     </div>
+                                     <div class="custom-control custom-radio">
+                                       <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" checked name="rdb">
+                                       <label for="customRadio2" class="custom-control-label">Perempuan</label>
+                                     </div>
+                                     <div class="custom-control custom-radio">
+                                       <input class="custom-control-input" type="radio" id="customRadio3" disabled name="rdb">
+                                       <label for="customRadio3" class="custom-control-label">Tak hingga</label>
+                                     </div>
+                                   </div>
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <div class="custom-control custom-switch">
+                                   <input type="checkbox" class="custom-control-input" id="customSwitch1" name="cbxSwitch">
+                                   <label class="custom-control-label" for="customSwitch1">Example Switch</label>
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                 <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                   <input type="checkbox" class="custom-control-input" id="customSwitch3" name="cbxSwitch">
+                                   <label class="custom-control-label" for="customSwitch3">Example Switch Color</label>
+                                 </div>
+                               </div>
+                             </div>
+                             <!-- /.card-body -->
+
+                             <div class="card-footer">
+                               <button type="submit" class="btn btn-primary">Simpan</button>
+                               <button type="reset" class="btn btn-danger float-right">Tidak</button>
+                             </div>
+                           </form>
+                         </div>
+                         <!-- /.card -->
+                       </div>
+                       <!-- end ini untuk form data -->
+
+
+                       <!-- start ini untuk table standart -->
+                       <div class="col-md-6">
+                         <!-- general form elements -->
+                           <div class="card card-purple">
+                             <div class="card-header">
+                               <h3 class="card-title" style="color: white">Example Table {{ class }}</h3>
+                               <div class="card-tools">
+                                 <div class="input-group input-group-sm" style="width: 150px;">
+                                   <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                   <div class="input-group-append">
+                                     <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>
+                            <!-- /.card-header -->
+                             <div class="card-body">
+                               <table class="table table-bordered">
+                                 <thead>
+                                   <tr>
+                                     <th style="width: 10px">#</th>
+                                     <th>Task</th>
+                                     <th>Progress</th>
+                                     <th style="width: 40px">Label</th>
+                                     <th>Action</th>
+                                   </tr>
+                                 </thead>
+                                 <tbody>
+                                   <tr>
+                                     <td>1.</td>
+                                     <td>Update software</td>
+                                     <td>
+                                       <div class="progress progress-xs">
+                                         <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                       </div>
+                                     </td>
+                                     <td><span class="badge bg-danger">55%</span></td>
+                                     <td>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-success" data-toggle="modal" data-target="#modal-edit"><i class="far fa-edit"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-info" data-toggle="modal" data-target="#modal-active"><i class="far fa-thumbs-up"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-danger" data-toggle="modal" data-target="#modal-nonactive"><i class="far fa-thumbs-down"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-warning" data-toggle="modal" data-target="#modal-view"><i class="far fa-eye"></i></a>
+                                     </td>
+                                   </tr>
+                                   <tr>
+                                     <td>2.</td>
+                                     <td>Clean database</td>
+                                     <td>
+                                       <div class="progress progress-xs">
+                                         <div class="progress-bar bg-warning" style="width: 70%"></div>
+                                       </div>
+                                     </td>
+                                     <td><span class="badge bg-warning">70%</span></td>
+                                     <td>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-success" data-toggle="modal" data-target="#modal-edit"><i class="far fa-edit"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-info" data-toggle="modal" data-target="#modal-active"><i class="far fa-thumbs-up"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-danger" data-toggle="modal" data-target="#modal-nonactive"><i class="far fa-thumbs-down"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-warning" data-toggle="modal" data-target="#modal-view"><i class="far fa-eye"></i></a>
+                                     </td>
+                                   </tr>
+                                   <tr>
+                                     <td>3.</td>
+                                     <td>Cron job running</td>
+                                     <td>
+                                       <div class="progress progress-xs progress-striped active">
+                                         <div class="progress-bar bg-primary" style="width: 30%"></div>
+                                       </div>
+                                     </td>
+                                     <td><span class="badge bg-primary">30%</span></td>
+                                     <td>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-success" data-toggle="modal" data-target="#modal-edit"><i class="far fa-edit"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-info" data-toggle="modal" data-target="#modal-active"><i class="far fa-thumbs-up"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-danger" data-toggle="modal" data-target="#modal-nonactive"><i class="far fa-thumbs-down"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-warning" data-toggle="modal" data-target="#modal-view"><i class="far fa-eye"></i></a>
+                                     </td>
+                                   </tr>
+                                   <tr>
+                                     <td>4.</td>
+                                     <td>Fix and squish bugs</td>
+                                     <td>
+                                       <div class="progress progress-xs progress-striped active">
+                                         <div class="progress-bar bg-success" style="width: 90%"></div>
+                                       </div>
+                                     </td>
+                                     <td><span class="badge bg-success">90%</span></td>
+                                     <td>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-success" data-toggle="modal" data-target="#modal-edit"><i class="far fa-edit"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-info" data-toggle="modal" data-target="#modal-active"><i class="far fa-thumbs-up"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-danger" data-toggle="modal" data-target="#modal-nonactive"><i class="far fa-thumbs-down"></i></a>
+                                       <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-warning" data-toggle="modal" data-target="#modal-view"><i class="far fa-eye"></i></a>
+                                     </td>
+                                   </tr>
+                                 </tbody>
+                               </table>
+                             </div>
+                             <!-- /.card-body -->
+                             <div class="card-footer clearfix">
+                               <ul class="pagination pagination-sm m-0 float-right">
+                                 <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                               </ul>
+                             </div>
+                         </div>
+                       </div>
+                       <!-- end ini untuk table standart -->
+                     </div><!-- /.row -->
+                </div>
+                <!-- end ini tab ke 1 -->
+
+                <!-- start ini tab ke 2 -->
+                <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
+                  <div class="card card-purple">
+                      <div class="card-header">
+                        <h3 class="card-title">DataTable {{ class }}</h3>
+                      </div>
+                      <!-- /.card-header -->
+                      <a href="" data-value="" data-backdrop="static" data-keyboard="false"class="btn btn-block btn-flat btn-xs btn-warning" data-toggle="modal" data-target="#modal-add"><i class="far fa-plus-square"></i></a>
+                      <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped table-hover">
+                          <thead>
+                            <tr>
+                              <th style="width: 10px">#</th>
+                              <th>Task</th>
+                              <th>Progress</th>
+                              <th style="width: 40px">Label</th>
+                              <th style="width: auto">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>1.</td>
+                              <td>Update software</td>
+                              <td>
+                                <div class="progress progress-xs">
+                                  <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                </div>
+                              </td>
+                              <td><span class="badge bg-danger">55%</span></td>
+                              <td>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-success" data-toggle="modal" data-target="#modal-edit"><i class="far fa-edit"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-info" data-toggle="modal" data-target="#modal-active"><i class="far fa-thumbs-up"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-danger" data-toggle="modal" data-target="#modal-nonactive"><i class="far fa-thumbs-down"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-warning" data-toggle="modal" data-target="#modal-view"><i class="far fa-eye"></i></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>2.</td>
+                              <td>Clean database</td>
+                              <td>
+                                <div class="progress progress-xs">
+                                  <div class="progress-bar bg-warning" style="width: 70%"></div>
+                                </div>
+                              </td>
+                              <td><span class="badge bg-warning">70%</span></td>
+                              <td>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-success" data-toggle="modal" data-target="#modal-edit"><i class="far fa-edit"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-info" data-toggle="modal" data-target="#modal-active"><i class="far fa-thumbs-up"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-danger" data-toggle="modal" data-target="#modal-nonactive"><i class="far fa-thumbs-down"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-warning" data-toggle="modal" data-target="#modal-view"><i class="far fa-eye"></i></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>3.</td>
+                              <td>Cron job running</td>
+                              <td>
+                                <div class="progress progress-xs progress-striped active">
+                                  <div class="progress-bar bg-primary" style="width: 30%"></div>
+                                </div>
+                              </td>
+                              <td><span class="badge bg-primary">30%</span></td>
+                              <td>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-success" data-toggle="modal" data-target="#modal-edit"><i class="far fa-edit"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-info" data-toggle="modal" data-target="#modal-active"><i class="far fa-thumbs-up"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-danger" data-toggle="modal" data-target="#modal-nonactive"><i class="far fa-thumbs-down"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-warning" data-toggle="modal" data-target="#modal-view"><i class="far fa-eye"></i></a>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>4.</td>
+                              <td>Fix and squish bugs</td>
+                              <td>
+                                <div class="progress progress-xs progress-striped active">
+                                  <div class="progress-bar bg-success" style="width: 90%"></div>
+                                </div>
+                              </td>
+                              <td><span class="badge bg-success">90%</span></td>
+                              <td>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-success" data-toggle="modal" data-target="#modal-edit"><i class="far fa-edit"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-info" data-toggle="modal" data-target="#modal-active"><i class="far fa-thumbs-up"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-danger" data-toggle="modal" data-target="#modal-nonactive"><i class="far fa-thumbs-down"></i></a>
+                                <a href="" data-value="" data-backdrop="static" data-keyboard="false" class="btn btn-xs btn-outline-warning" data-toggle="modal" data-target="#modal-view"><i class="far fa-eye"></i></a>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- end ini tab ke 2 -->
+
+              </div>
+            </div>
+            <!-- /.card -->
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<!-- /.modal add -->
+<div class="modal fade" id="modal-add">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Tambah Data</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+         <div class="col-md-12">
+           <!-- general form elements -->
+           <div class="card card-purple card-outline">
+             <!-- /.card-header -->
+             <!-- form start -->
+             <form role="form" action="" method="">
+               @csrf
+               <div class="card-body">
+                 <div class="form-group">
+                   <label for="exampleInputPassword1">Text</label>
+                   <input type="text" class="form-control" id="" placeholder="Example Text" name="txt">
+                 </div>
+                 <div class="form-group">
+                   <label for="exampleInputEmail1">Email Text</label>
+                   <input type="email" class="form-control" id="" placeholder="Example Email" name="email">
+                 </div>
+                 <div class="form-group">
+                   <label for="exampleInputPassword1">Password</label>
+                   <input type="password" class="form-control" id="" placeholder="Example Password" name="pwd">
+                 </div>
+                 <div class="form-group">
+                   <label for="exampleInputFile">File input</label>
+                   <div class="input-group">
+                     <div class="custom-file">
+                       <input type="file" class="custom-file-input" id="exampleInputFile">
+                       <label class="custom-file-label" for="exampleInputFile" name="upd">Choose file</label>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </form>
+           </div>
+           <!-- /.card -->
+         </div>
+       </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+        <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<!-- /.modal update -->
+<div class="modal fade" id="modal-edit">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Ubah Data</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+         <div class="col-md-12">
+           <!-- general form elements -->
+           <div class="card card-purple card-outline">
+             <!-- /.card-header -->
+             <!-- form start -->
+             <form role="form" action="" method="">
+               @csrf
+               <div class="card-body">
+                 <div class="form-group">
+                   <label for="exampleInputPassword1">Text</label>
+                   <input type="text" class="form-control" id="" placeholder="Example Text" name="txt">
+                 </div>
+                 <div class="form-group">
+                   <label for="exampleInputEmail1">Email Text</label>
+                   <input type="email" class="form-control" id="" placeholder="Example Email" name="email">
+                 </div>
+                 <div class="form-group">
+                   <label for="exampleInputPassword1">Password</label>
+                   <input type="password" class="form-control" id="" placeholder="Example Password" name="pwd">
+                 </div>
+                 <div class="form-group">
+                   <label for="exampleInputFile">File input</label>
+                   <div class="input-group">
+                     <div class="custom-file">
+                       <input type="file" class="custom-file-input" id="exampleInputFile">
+                       <label class="custom-file-label" for="exampleInputFile" name="upd">Choose file</label>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </form>
+           </div>
+           <!-- /.card -->
+         </div>
+       </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+        <button type="button" class="btn btn-primary">Simpan Perubahan</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<!-- /.modal update -->
+<div class="modal fade" id="modal-view">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">View Data</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+         <div class="col-md-12">
+           <!-- general form elements -->
+           <div class="card card-purple card-outline">
+             <!-- /.card-header -->
+             <!-- form start -->
+             <form role="form" action="" method="">
+               @csrf
+               <div class="card-body">
+                 <div class="form-group">
+                   <label for="exampleInputPassword1">Text</label>
+                   <input type="text" class="form-control" id="" placeholder="Example Text" name="txt" readonly>
+                 </div>
+                 <div class="form-group">
+                   <label for="exampleInputEmail1">Email Text</label>
+                   <input type="email" class="form-control" id="" placeholder="Example Email" name="email" readonly>
+                 </div>
+                 <div class="form-group">
+                   <label for="exampleInputPassword1">Password</label>
+                   <input type="password" class="form-control" id="" placeholder="Example Password" name="pwd" readonly>
+                 </div>
+                 <div class="form-group">
+                   <label for="exampleInputFile">File input</label>
+                   <div class="input-group">
+                     <div class="custom-file">
+                       <input type="file" class="custom-file-input" id="exampleInputFile" disabled>
+                       <label class="custom-file-label" for="exampleInputFile" name="upd">Choose file</label>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+             </form>
+           </div>
+           <!-- /.card -->
+         </div>
+       </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Tutup Page</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- /.modal active -->
+<div class="modal fade" id="modal-active">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Aktifkan Data</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Apakah anda yakin untuk mengaktifkan data ini?&hellip;</p>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+        <button type="button" class="btn btn-primary">Ya, Saya Yakin</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<!-- /.modal active -->
+<div class="modal fade" id="modal-nonactive">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Non Aktifkan Data</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Apakah anda yakin untuk mengnonaktifkan data ini?&hellip;</p>
+      </div>
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Tidak</button>
+        <button type="button" class="btn btn-primary">Ya, Saya Yakin</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+@endsection
+
+
+@section('footscript')
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+  });
+
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+
+    //Date range picker
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      locale: {
+        format: 'MM/DD/YYYY hh:mm A'
+      }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
+    })
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+
+  })
+</script>
+@endsection

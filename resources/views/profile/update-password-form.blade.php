@@ -1,13 +1,6 @@
 <div class="card">
     <form method="POST" action="{{ route('user-password.update') }}">
         @csrf @method('PUT')
-
-        @if (session('status') == "password-updated")
-            <div class="alert alert-success">
-                Password updated successfully.
-            </div>
-        @endif
-
         <div class="card-header">
             <h4>Update Password</h4>
         </div>

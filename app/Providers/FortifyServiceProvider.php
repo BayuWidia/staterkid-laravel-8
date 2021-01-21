@@ -41,11 +41,9 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::authenticateUsing(function (Request $request) {
             $loginType = filter_var($request->email, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
 
-            $user = User::where($loginType, $request->email)
-                          ->where('is_active','1')->first();
+            $user = User::where($loginType, $request->email)->where('is_active','1')->first();
 
-            if ($user &&
-                Hash::check($request->password, $user->password)) {
+            if ($user && Hash::check($request->password, $user->password)) {
                 return $user;
             }
         });

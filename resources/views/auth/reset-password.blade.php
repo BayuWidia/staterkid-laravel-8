@@ -36,14 +36,24 @@
 
                         <div class="form-group">
                             <label for="email">@lang('Email')</label>
-                            <input id="email" type="email" class="form-control" name="email" tabindex="1"
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" tabindex="1"
                                 value="{{ old('email', $request->email) }}" readonly>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="password">@lang('Password')</label>
-                            <input id="password" type="password" class="form-control pwstrength"
+                            <input id="password" type="password" class="form-control pwstrength @error('password') is-invalid @enderror"
                                 data-indicator="pwindicator" name="password" tabindex="2" required>
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                             <div id="pwindicator" class="pwindicator">
                                 <div class="bar"></div>
                                 <div class="label"></div>

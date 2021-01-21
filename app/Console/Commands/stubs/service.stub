@@ -1,0 +1,92 @@
+<?php
+
+/**
+ * full-stack-developer
+ * @author https://github.com/BayuWidia
+ * Jakarta 01-Juli-2020
+ */
+
+namespace {{ namespace }}\_pathUrl_;
+
+// =============== start default use service ===============
+use Auth;
+use Ramsey\Uuid\Uuid;
+
+use {{ rootNamespace }}Repositories\_pathUrl_\Interfaces\{{ class }}Interface as {{ class }}Interface;
+// =============== end default use service ===============
+
+
+class {{ class }}Service
+{
+
+    /**
+    * Define Interface.
+    */
+    private ${{ classCamelStyle }}Interface;
+
+    public function __construct({{ class }}Interface ${{ classCamelStyle }}Interface)
+    {
+        $this->{{ classCamelStyle }}Interface = ${{ classCamelStyle }}Interface;
+    }
+
+
+    /**
+    * Define function custom select.
+    */
+    public function getCustom{{ class }}()
+    {
+        $result = $this->{{ classCamelStyle }}Interface->getCustom{{ class }}();
+
+        return $result;
+    }
+
+    /**
+    * Define function custom select.
+    */
+    public function getDataById($id)
+    {
+        $result = $this->{{ classCamelStyle }}Interface->getDataById($id);
+
+        return $result;
+    }
+
+
+    /**
+    * Define function store.
+    */
+    public function store($attributes)
+    {
+
+        $params = array('id' => Uuid::uuid4(),
+                      'componentName' => $attributes->componentName);
+
+        $result = $this->{{ classCamelStyle }}Interface->store($params);
+
+        return $result;
+    }
+
+
+    /**
+    * Define function update.
+    */
+    public function update($attributes, $id)
+    {
+
+      $params = array('componentName' => $attributes->componentName);
+
+        $result = $this->{{ classCamelStyle }}Interface->update($params, $id);
+
+        return $result;
+    }
+
+
+    /**
+    * Define function destroy.
+    */
+    public function destroy($id)
+    {
+        $result = $this->{{ classCamelStyle }}Interface->destroy($id);
+
+        return $result;
+    }
+}

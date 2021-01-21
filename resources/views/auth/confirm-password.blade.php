@@ -34,7 +34,12 @@
 
                         <div class="form-group">
                             <label for="password">@lang('Password')</label>
-                            <input id="password" type="password" class="form-control" name="password" tabindex="1">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" tabindex="1">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                {{ $message }}
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">

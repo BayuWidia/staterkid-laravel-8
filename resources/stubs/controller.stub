@@ -1,0 +1,121 @@
+<?php
+
+/**
+ * full-stack-developer
+ * @author https://github.com/BayuWidia
+ * Jakarta 01-Juli-2020
+ */
+
+namespace {{ namespace }}\_pathUrl_;
+
+// =============== start default use controller ===============
+use Auth;
+use DB;
+use Validator;
+use Hash;
+use Image;
+use Alert;
+
+use App\Http\Controllers\Controller;
+
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Models\{{ class }};
+use App\Http\Requests\_pathUrl_\{{ class }}Request;
+
+use {{ rootNamespace }}Services\IsAdmin\ConcatenateService as ConcatenateService;
+use {{ rootNamespace }}Services\_pathUrl_\{{ class }}Service as {{ class }}Service;
+// =============== end default use controller ===============
+
+
+class {{ class }}Controller extends Controller
+{
+
+    /**
+    * Define Service.
+    */
+    private $concatenateService;
+
+    private ${{ classSingularLowerCase }}Service;
+
+    public function __construct(ConcatenateService $concatenateService, {{ class }}Service ${{ classSingularLowerCase }}Service)
+    {
+        $this->concatenateService = $concatenateService;
+        $this->{{ classSingularLowerCase }}Service = ${{ classSingularLowerCase }}Service;
+    }
+
+    /**
+    * Define route index.
+    */
+    private $route = '_pathUrl_1._pathUrl_2.';
+
+    /**
+    * Define index page.
+    */
+    public function index()
+    {
+        $datas = $this->{{ classSingularLowerCase }}Service->getData();
+
+        return view($this->route . 'index', compact('datas'));
+    }
+
+    /**
+    * Define function create page.
+    */
+    public function create()
+    {
+        return view($this->route . '_pathUrl_/{{ class }}/create');
+    }
+
+    /**
+    * Define function show page.
+    */
+    public function show($id)
+    {
+        $data = $this->{{ classSingularLowerCase }}Service->getDataById($id);
+
+        return view($this->route . '_pathUrl_/{{ class }}/detail', compact('data'));
+    }
+
+    /**
+    * Define function edit page.
+    */
+    public function edit($id)
+    {
+        $data = $this->{{ classSingularLowerCase }}Service->getDataById($id);
+
+        return view($this->route . '_pathUrl_/{{ class }}/edit', compact('data'));
+    }
+
+    /**
+    * Define function store.
+    */
+    public function store({{ class }}Request $request)
+    {
+        $data = $this->{{ classSingularLowerCase }}Service->store($request->all());
+
+        return redirect()->route($this->route . 'index')->with('success', 'Berhasil');
+    }
+
+
+    /**
+    * Define function update.
+    */
+    public function update({{ class }}Request $request, $id)
+    {
+        $data = $this->{{ classSingularLowerCase }}Service->update($request->all());
+
+        return redirect()->route($this->route . 'index')->with('success', 'Berhasil');
+    }
+
+
+    /**
+    * Define function destroy.
+    */
+    public function destroy($id)
+    {
+       $result = $this->{{ classSingularLowerCase }}Service->destroy($id);
+
+       return redirect()->route($this->route . 'index')->with('success', 'Berhasil');
+    }
+}

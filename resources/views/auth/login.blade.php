@@ -24,7 +24,7 @@
 
             <div class="card card-primary">
                 <div class="card-header">
-                    <h4>Login</h4>
+                    <h4>@lang('Login')</h4>
                 </div>
 
                 <div class="card-body">
@@ -52,8 +52,7 @@
                                     @endif
                                 </div>
                             </div>
-                            <input type="password" name="password"
-                                class="form-control @error('password') is-invalid @enderror"
+                            <input type="password" name="password" class="form-control @error('password') is-invalid @enderror"
                                 autocomplete="current-password" tabindex="2" />
                             @error('password')
                             <span class="invalid-feedback" role="alert">
