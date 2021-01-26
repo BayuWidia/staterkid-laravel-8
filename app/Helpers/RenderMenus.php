@@ -35,7 +35,6 @@ class RenderMenus
         $icons          = RenderMenus::redisGet('cache.icons');
 
         $addMenus = '';
-        dd($menus);
         foreach ($menus[Auth::user()->role_id] as $keyFirst => $valFirst) {
         // code...
         $name = Route::currentRouteName();

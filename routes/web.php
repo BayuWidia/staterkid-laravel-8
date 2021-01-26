@@ -33,10 +33,12 @@ Route::get('/clear-cache', function() {
     return view('errors.clear');
 })->name('clear-cache');
 
-Route::middleware('auth', 'verified')->group(function () {
-	Route::view('dashboard', 'dashboard')->name('dashboard');
-    Route::view('form', 'form')->name('form');
-    Route::view('profile', 'profile')->name('profile');
+Route::group(['middleware' => ['accessLog']], function () {
+    Route::middleware('auth', 'verified')->group(function () {
+        Route::view('dashboard', 'dashboard')->name('dashboard');
+        Route::view('form', 'form')->name('form');
+        Route::view('profile', 'profile')->name('profile');
 
-    Route::get('/test-a', 'Management\ManagementMenuController@index')->name('test-a');
+        Route::get('/test-a', 'Management\ManagementMenuController@index')->name('test-a');
+    });
 });

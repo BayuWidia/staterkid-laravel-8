@@ -19,6 +19,7 @@ use Session;
 use Illuminate\Support\Facades\Redis;
 use App\Services\IsAdmin\PrivillageService;
 use \Cache;
+use Carbon\Carbon;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -50,6 +51,12 @@ class FortifyServiceProvider extends ServiceProvider
             $user = User::where($loginType, $request->email)->where('is_active','1')->first();
 
             if ($user && Hash::check($request->password, $user->password)) {
+
+                /*$user->update([
+                    'last_login_at' => Carbon::now()->toDateTimeString(),
+                    'last_login_ip' => $request->getClientIp()
+                ]);*/
+
                 $privillageService = app(PrivillageService::class);
                 $roleData = $privillageService->getPrivillage();
 

@@ -33,7 +33,6 @@ class ManagementRoleController extends Controller
 {
     public function __construct()
     {
-        $this->concatenateService = $concatenateService;
         $this->managementRoleService = app(ManagementRoleService::class);;
         $this->managementMenuService  = app(ManagementMenuService::class);;
     }
