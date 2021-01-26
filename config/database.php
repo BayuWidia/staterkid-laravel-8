@@ -73,7 +73,7 @@ return [
               'charset' => 'utf8',
               'prefix' => '',
               'prefix_indexes' => true,
-              'schema' => 'laravel_7',
+              'schema' => 'laravel_8',
               'sslmode' => 'prefer',
         ],
 

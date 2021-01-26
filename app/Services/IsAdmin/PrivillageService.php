@@ -3,23 +3,17 @@
 namespace App\Services\IsAdmin;
 
 use Auth;
-use App\Repositories\IsAdmin\Privillage\Interfaces\PrivillageInterface as PrivillageInterface;
+use App\Repositories\IsAdmin\Privillage\Interfaces\PrivillageInterface;
 
 class PrivillageService
 {
 
-    private $privillageInterface;
-
-    public function __construct(PrivillageInterface $privillageInterface)
-    {
-        $this->privillageInterface = $privillageInterface;
-    }
-
     public function getPrivillage()
     {
-        $result = $this->privillageInterface->getPrivillage();
+        $privillageInterface = app(PrivillageInterface::class);
+        $result = $privillageInterface->getPrivillage();
 
-        return $result; 
+        return $result;
     }
 
 }

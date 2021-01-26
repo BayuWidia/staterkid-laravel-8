@@ -42,7 +42,7 @@
 
         <p>
             @foreach (json_decode(decrypt(auth()->user()->two_factor_recovery_codes), true) as $code)
-            <div>{{ $code }}</div>
+            <div>{{ trim($code) }}</div>
             @endforeach
         </p>
 

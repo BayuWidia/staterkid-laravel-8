@@ -17,6 +17,10 @@
                     <span>Dashboard</span>
                 </a>
             </li>
+            @php
+                $renderMenus = RenderMenus::appendMenus();
+                echo $renderMenus;
+            @endphp
             <li class="{{ Route::is('form') ? 'active' : '' }}">
                 <a href="{{ route('form') }}">
                     <i class="fas fa-file"></i>

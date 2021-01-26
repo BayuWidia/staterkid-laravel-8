@@ -14,18 +14,15 @@ use Image;
 use Hash;
 use Ramsey\Uuid\Uuid;
 
-use App\Repositories\Management\ManagementUser\Interfaces\ManagementUserInterface as ManagementUserInterface;
+use App\Repositories\Management\ManagementUser\Interfaces\ManagementUserInterface;
 // =============== end default use service ===============
 
 
 class ManagementUserService
 {
-
-    private $managementuserInterface;
-
-    public function __construct(ManagementUserInterface $managementuserInterface)
+    public function __construct()
     {
-        $this->managementuserInterface = $managementuserInterface;
+        $this->managementuserInterface = app(ManagementUserInterface::class);
     }
 
     public function getDataUsersById($id)

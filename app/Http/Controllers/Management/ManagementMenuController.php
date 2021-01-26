@@ -21,20 +21,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
-use App\Services\IsAdmin\ConcatenateService as ConcatenateService;
-use App\Services\Management\ManagementMenuService as ManagementMenuService;
+use App\Services\Management\ManagementMenuService;
 
 // =============== end default use controller ===============
 
 class ManagementMenuController extends Controller
 {
-    private $concatenateService;
-    private $managementMenuService;
-
-    public function __construct(ConcatenateService $concatenateService, ManagementMenuService $managementMenuService)
+    public function __construct()
     {
-        $this->concatenateService = $concatenateService;
-        $this->managementMenuService = $managementMenuService;
+        $this->managementMenuService = app(ManagementMenuService::class);
     }
 
     private $routeView = 'Management/ManagementMenu/';

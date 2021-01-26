@@ -13,6 +13,12 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Hash;
 use App\Models\User;
+use Validator;
+use Auth;
+use Session;
+use Illuminate\Support\Facades\Redis;
+use App\Services\IsAdmin\PrivillageService;
+use \Cache;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -44,6 +50,40 @@ class FortifyServiceProvider extends ServiceProvider
             $user = User::where($loginType, $request->email)->where('is_active','1')->first();
 
             if ($user && Hash::check($request->password, $user->password)) {
+                $privillageService = app(PrivillageService::class);
+                $roleData = $privillageService->getPrivillage();
+
+                $SubMenu2 = array();
+                foreach($roleData as $privillage){
+
+                    $role_id            = $privillage->role_id;
+                    $menu_name          = $privillage->menu_name;
+                    $menus_second_name  = $privillage->menus_second_name;
+                    $menus_third_name   = $privillage->menus_third_name;
+                    $icons[$menu_name]	= $privillage->menu_icon;
+
+                    $Menus[$role_id][$menu_name][$menus_second_name][] = $menus_third_name;
+
+                    if($privillage->menus_third_route!=''){
+                        $route_second_menu='#';
+                        $route_third_menu	=$privillage->menus_third_route;
+
+                        $SubMenu2[$role_id][$menu_name][$menus_second_name][$menus_third_name]=$route_third_menu;
+                        $SubMenu1[$role_id][$menu_name][$menus_second_name]=$route_second_menu;
+                    } else {
+                        $route_second_menu=$privillage->menus_second_route;
+                        $route_third_menu	='';
+
+                        $SubMenu1[$role_id][$menu_name][$menus_second_name]=$route_second_menu;
+                    }
+
+                }
+
+                if (!Cache::has('cache.menus')){ Cache::put('cache.menus', $Menus); }
+                if (!Cache::has('cache.subMenu1')){ Cache::put('cache.subMenu1', $SubMenu1); }
+                if (!Cache::has('cache.subMenu2')){ Cache::put('cache.subMenu2', $SubMenu2); }
+                if (!Cache::has('cache.icons')){ Cache::put('cache.icons', $icons); }
+
                 return $user;
             }
         });

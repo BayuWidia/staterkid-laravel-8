@@ -23,25 +23,19 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Management\ManagementRoleRequest;
 use Ramsey\Uuid\Uuid;
 
-use App\Services\IsAdmin\ConcatenateService as ConcatenateService;
-use App\Services\Management\ManagementRoleService as ManagementRoleService;
-use App\Services\Management\ManagementMenuService as ManagementMenuService;
+use App\Services\Management\ManagementRoleService;
+use App\Services\Management\ManagementMenuService;
 
 // =============== end default use controller ===============
 
 
 class ManagementRoleController extends Controller
 {
-
-    private $concatenateService;
-    private $managementRoleService;
-    private $managementMenuService;
-
-    public function __construct(ConcatenateService $concatenateService, ManagementRoleService $managementRoleService, ManagementMenuService $managementMenuService)
+    public function __construct()
     {
         $this->concatenateService = $concatenateService;
-        $this->managementRoleService = $managementRoleService;
-        $this->managementMenuService  = $managementMenuService;
+        $this->managementRoleService = app(ManagementRoleService::class);;
+        $this->managementMenuService  = app(ManagementMenuService::class);;
     }
 
     private $routeView = 'Management/ManagementRole/';

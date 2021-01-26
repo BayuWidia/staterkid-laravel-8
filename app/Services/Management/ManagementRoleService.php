@@ -12,18 +12,16 @@ namespace App\Services\Management;
 use Auth;
 use Ramsey\Uuid\Uuid;
 
-use App\Repositories\Management\ManagementRole\Interfaces\ManagementRoleInterface as ManagementRoleInterface;
+use App\Repositories\Management\ManagementRole\Interfaces\ManagementRoleInterface;
 // =============== end default use service ===============
 
 
 class ManagementRoleService
 {
 
-    private $managementRoleInterface;
-
-    public function __construct(ManagementRoleInterface $managementRoleInterface)
+    public function __construct()
     {
-        $this->managementRoleInterface = $managementRoleInterface;
+        $this->managementRoleInterface = app(ManagementRoleInterface::class);
     }
 
 

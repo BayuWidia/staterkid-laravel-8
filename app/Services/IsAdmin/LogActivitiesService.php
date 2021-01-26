@@ -17,17 +17,15 @@ use Ramsey\Uuid\Uuid;
 use DataTables;
 use Carbon\Carbon;
 
-use App\Repositories\IsAdmin\Logs\Interfaces\LogActivitiesInterface as LogActivitiesInterface;
+use App\Repositories\IsAdmin\Logs\Interfaces\LogActivitiesInterface;
 // =============== end default use service ===============
 
 
 class LogActivitiesService
 {
-    private $logActivitiesInterface;
-
-    public function __construct(LogActivitiesInterface $logActivitiesInterface)
+    public function __construct()
     {
-        $this->logActivitiesInterface = $logActivitiesInterface;
+        $this->logActivitiesInterface = app(LogActivitiesInterface::class);
     }
 
     public function getDataLogActivities()

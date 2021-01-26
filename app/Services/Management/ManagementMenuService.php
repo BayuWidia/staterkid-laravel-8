@@ -14,18 +14,16 @@ use Image;
 use Hash;
 use Ramsey\Uuid\Uuid;
 
-use App\Repositories\Management\ManagementMenu\Interfaces\ManagementMenuInterface as ManagementMenuInterface;
+use App\Repositories\Management\ManagementMenu\Interfaces\ManagementMenuInterface;
 // =============== end default use service ===============
 
 
 class ManagementMenuService
 {
 
-    private $managementMenuInterface;
-
-    public function __construct(ManagementMenuInterface $managementMenuInterface)
+    public function __construct()
     {
-        $this->managementMenuInterface = $managementMenuInterface;
+        $this->managementMenuInterface = app(ManagementMenuInterface::class);
     }
 
     public function getDataMenus(){
@@ -38,9 +36,9 @@ class ManagementMenuService
       foreach($getDataMenusSecond as $key){
   			$idMasterMenus			= $key->id_master_menus;
   			$getDataMenusSeconds[$idMasterMenus][] = $key;
-  		}
+          }
 
-      if ($getDataMenusThird != null) {
+      if (count($getDataMenusThird) > 0) {
         foreach($getDataMenusThird as $key){
     			$idMasterMenuSecond	=$key->id_master_menus_second;
     			$getDataMenusThirds[$idMasterMenuSecond][]=$key;
@@ -48,6 +46,7 @@ class ManagementMenuService
       } else {
         $getDataMenusThirds = array();
       }
+
       $dataMenu = array("getDataMenus" => $getDataMenus,
                         "getDataMenusSecond" => $getDataMenusSeconds,
                         "getDataMenusThird" => $getDataMenusThirds,

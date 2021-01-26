@@ -54,9 +54,9 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/Http/Helpers/LogActivitiesHelper.php",
-            "app/Http/Helpers/RenderMenus.php",
-            "app/Http/Helpers/UtilHelper.php"
+            "App/Helpers/LogActivitiesHelper.php",
+            "App/Helpers/RenderMenus.php",
+            "App/Helpers/UtilHelper.php"
         ]
     },
     "autoload-dev": {

@@ -21,20 +21,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
-use App\Services\IsAdmin\ConcatenateService as ConcatenateService;
-use App\Services\IsAdmin\LogActivitiesService as LogActivitiesService;
+use App\Services\IsAdmin\LogActivitiesService;
 
 // =============== end default use controller ===============
 
 class LogActivitiesController extends Controller
 {
-    private $concatenateService;
     private $logActivitiesService;
 
-    public function __construct(ConcatenateService $concatenateService, LogActivitiesService $logActivitiesService)
+    public function __construct()
     {
-        $this->concatenateService = $concatenateService;
-        $this->logActivitiesService = $logActivitiesService;
+        $this->logActivitiesService =  app(LogActivitiesService::class);
     }
 
     private $routeView = 'logs/';

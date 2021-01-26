@@ -67,6 +67,7 @@
                                     id="remember-me" {{ old('remember') ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="remember-me">@lang('Remember Me')</label>
                             </div>
+
                         </div>
 
                         <div class="form-group">

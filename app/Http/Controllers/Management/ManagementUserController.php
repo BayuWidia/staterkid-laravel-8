@@ -24,23 +24,17 @@ use App\Http\Requests\Management\LockRequest;
 use App\Http\Requests\Management\ManagementUserRequest;
 use App\Http\Requests\Management\ManagementUserPasswordRequest;
 
-use App\Services\IsAdmin\ConcatenateService as ConcatenateService;
-use App\Services\Management\ManagementUserService as ManagementUserService;
-use App\Services\Management\ManagementRoleService as ManagementRoleService;
+use App\Services\Management\ManagementUserService;
+use App\Services\Management\ManagementRoleService;
 
 // =============== end default use controller ===============
 
 class ManagementUserController extends Controller
 {
-    private $concatenateService;
-    private $managementUserService;
-    private $managementRoleService;
-
-    public function __construct(ConcatenateService $concatenateService, ManagementUserService $managementUserService, ManagementRoleService $managementRoleService)
+    public function __construct()
     {
-        $this->concatenateService = $concatenateService;
-        $this->managementUserService = $managementUserService;
-        $this->managementRoleService = $managementRoleService;
+        $this->managementUserService = app(ManagementUserService::class);;
+        $this->managementRoleService = app(ManagementRoleService::class);;
     }
 
     private $routeView = 'Management/ManagementUser/';
