@@ -40,7 +40,7 @@ Route::get('/clear-cache', function() {
     return view('errors.clear');
 })->name('clear-cache');
 
-Route::group(['middleware' => ['accessLog', 'auth', 'verified','isApplication']], function () {
+Route::group(['middleware' => ['accessLog', 'auth', 'verified']], function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('form', 'form')->name('form');
 
