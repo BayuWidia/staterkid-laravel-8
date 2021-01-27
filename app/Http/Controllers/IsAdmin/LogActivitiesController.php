@@ -38,7 +38,7 @@ class LogActivitiesController extends Controller
 
     public function index()
     {
-          return view($this->routeView.'indexLogActivities');
+        return view($this->routeView.'indexLogActivities');
     }
 
     public function getDataForDataTable()

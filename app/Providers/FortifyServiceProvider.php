@@ -18,6 +18,7 @@ use Auth;
 use Session;
 use Illuminate\Support\Facades\Redis;
 use App\Services\IsAdmin\PrivillageService;
+use App\Services\Management\ManagementUserService;
 use \Cache;
 use Carbon\Carbon;
 
@@ -56,6 +57,14 @@ class FortifyServiceProvider extends ServiceProvider
                     'last_login_at' => Carbon::now()->toDateTimeString(),
                     'last_login_ip' => $request->getClientIp()
                 ]);*/
+
+                $managementUserService = app(ManagementUserService::class);
+                $getCounter = $user->login_count + 1;
+                $latLoginAt = Carbon::now()->toDateTimeString();
+                $latLoginIp = $request->getClientIp();
+                $id = $user->id_master_users;
+                $auth = $user->username;
+                $roleData = $managementUserService->updateCountLogin($getCounter, $latLoginAt, $latLoginIp, $id, $auth);
 
                 $privillageService = app(PrivillageService::class);
                 $roleData = $privillageService->getPrivillage();

@@ -28,13 +28,12 @@ use App\Services\Management\ManagementMenuService;
 
 // =============== end default use controller ===============
 
-
 class ManagementRoleController extends Controller
 {
     public function __construct()
     {
-        $this->managementRoleService = app(ManagementRoleService::class);;
-        $this->managementMenuService  = app(ManagementMenuService::class);;
+        $this->managementRoleService = app(ManagementRoleService::class);
+        $this->managementMenuService  = app(ManagementMenuService::class);
     }
 
     private $routeView = 'Management/ManagementRole/';
@@ -50,7 +49,6 @@ class ManagementRoleController extends Controller
         $datas = $this->managementRoleService->getCustomManagementRole();
         return response()->json(["data"=>$datas]);
     }
-
 
     public function edit($id)
     {
@@ -84,14 +82,14 @@ class ManagementRoleController extends Controller
 
     public function delInsAccess(Request $params)
     {
-      // dd($params);
-      $data = $this->managementRoleService->delInsAccess($params);
-      return redirect()->route('managementrole.index')->with('message', 'Data tersebut telah diubah.');
+        // dd($params);
+        $data = $this->managementRoleService->delInsAccess($params);
+        return redirect()->route('managementrole.index')->with('message', 'Data tersebut telah diubah.');
     }
 
     public function destroy($id)
     {
-       $result = $this->managementRoleService->destroy($id);
-       return redirect()->route($this->route . 'index')->with('success', 'Berhasil');
+        $result = $this->managementRoleService->destroy($id);
+        return redirect()->route($this->route . 'index')->with('success', 'Berhasil');
     }
 }

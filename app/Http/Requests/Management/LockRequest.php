@@ -7,61 +7,46 @@ use App\Http\Requests\BaseFormRequest;
 
 class LockRequest extends BaseFormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         switch($this->method())
-         {
-             case 'GET':
-             {
-                 return [];
-             }
+        {
+            case 'GET':
+            {
+                return [];
+            }
 
-             case 'POST':
-             {
-                 return [
-                     'password' => 'required|min:3|max:50',
-                 ];
-             }
+            case 'POST':
+            {
+                return [
+                    'password' => 'required|min:3|max:50',
+                ];
+            }
 
-             case 'PUT':
-             {
-                 return [];
-             }
+            case 'PUT':
+            {
+                return [];
+            }
 
-             case 'PATCH':
-             {
-                 return [];
-             }
+            case 'PATCH':
+            {
+                return [];
+            }
 
-             case 'DELETE':
-             {
-                 return [];
-             }
+            case 'DELETE':
+            {
+                return [];
+            }
 
-             default:break;
-         }
+            default:break;
+        }
     }
 
-    /**
-     * Custom message for validation
-     *
-     * @return array
-     */
     public function messages()
     {
         switch($this->method())

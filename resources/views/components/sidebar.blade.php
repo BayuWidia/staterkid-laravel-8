@@ -27,12 +27,6 @@
                     <span>Form</span>
                 </a>
             </li>
-            <li class="{{ Route::is('profile') ? 'active' : '' }}">
-                <a href="{{ route('profile') }}">
-                    <i class="fas fa-user"></i>
-                    <span>Profile</span>
-                </a>
-            </li>
 
             <li class="nav-item dropdown">
               <a href="#" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Level 1</span></a>

@@ -20,8 +20,8 @@ class AccessLog
      */
     public function handle($request, Closure $next)
     {
-      $response = $next($request);
-        // buat log
+        $response = $next($request);
+
         $set = new MasterAccessLog;
         $set->id      = Uuid::uuid4();
         $set->url = $request->fullUrl();
@@ -32,16 +32,6 @@ class AccessLog
         $set->created_by = Auth::user()->username;
         $set->save();
 
-        // DB::table('master_access_logs')->insert([
-        //   'url' => $request->fullUrl(),
-        //   'method' => $request->method(),
-        //   'path' => $request->path(),
-        //   'ip' => $request->getClientIp(),
-        //   'agent' => $request->header('user-agent'),
-        //   'created_by' => Auth::user()->username,
-        //   'created_at' => new DateTime,
-        //   'updated_at' => new DateTime
-        // ]);
         return $response;
     }
 }

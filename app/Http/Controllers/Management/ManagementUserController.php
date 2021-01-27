@@ -33,58 +33,58 @@ class ManagementUserController extends Controller
 {
     public function __construct()
     {
-        $this->managementUserService = app(ManagementUserService::class);;
-        $this->managementRoleService = app(ManagementRoleService::class);;
+        $this->managementUserService = app(ManagementUserService::class);
+        $this->managementRoleService = app(ManagementRoleService::class);
     }
 
     private $routeView = 'Management/ManagementUser/';
+    private $routeViewProfile = 'profile/';
 
     public function index()
     {
-          $getDataUsersPaging = $this->managementUserService->getDataUsersPaging();
-          $getDataRole = $this->managementRoleService->getCustomManagementRole();
-          return view($this->routeView.'indexManagementUser', compact('getDataUsersPaging','getDataRole'));
+        $getDataUsersPaging = $this->managementUserService->getDataUsersPaging();
+        $getDataRole = $this->managementRoleService->getCustomManagementRole();
+        return view($this->routeView.'indexManagementUser', compact('getDataUsersPaging','getDataRole'));
     }
 
     public function search(Request $request)
   	{
-  		    $search = $request->search;
-          $getDataUsersPaging = $this->managementUserService->getSearchDataUsersPaging($search);
-          $getDataRole = $this->managementRoleService->getCustomManagementRole();
-  		    return view($this->routeView.'indexManagementUser', compact('getDataUsersPaging','getDataRole'));
+        $search = $request->search;
+        $getDataUsersPaging = $this->managementUserService->getSearchDataUsersPaging($search);
+        $getDataRole = $this->managementRoleService->getCustomManagementRole();
+        return view($this->routeView.'indexManagementUser', compact('getDataUsersPaging','getDataRole'));
   	}
 
     public function store(ManagementUserRequest $request)
     {
-          $condition ="";
-          $checkDoubleUser  = $this->managementUserService->getCheckUserDouble($request->username, $request->email, $condition);
-          if ($checkDoubleUser != null) {
+        $condition ="";
+        $checkDoubleUser  = $this->managementUserService->getCheckUserDouble($request->username, $request->email, $condition);
+        if ($checkDoubleUser != null) {
             return redirect()->route('managementuser.index')->with('messagefail', 'Username atau Email tersebut sudah tersedia.');
-
-          } else {
+        } else {
             $process = $this->managementUserService->store($request);
             return redirect()->route('managementuser.index')->with('message', 'Data tersebut telah ditambahkan.');
-         }
+        }
     }
 
     public function update(ManagementUserRequest $request)
     {
-          $condition = $request->idMasterUsersEdit;
-          $checkDoubleUser  = $this->managementUserService->getCheckUserDouble($request->usernameEdit, $request->emailEdit, $condition);
-          if ($checkDoubleUser > 1) {
+        $condition = $request->idMasterUsersEdit;
+        $checkDoubleUser  = $this->managementUserService->getCheckUserDouble($request->usernameEdit, $request->emailEdit, $condition);
+        if ($checkDoubleUser > 1) {
             return redirect()->route('managementuser.index')->with('messagefail', 'Username atau Email tersebut sudah tersedia.');
 
-          } else {
+        } else {
             $process = $this->managementUserService->update($request);
             return redirect()->route('managementuser.index')->with('message', 'Data tersebut telah diubah.');
-         }
+        }
 
     }
 
     public function updateStatus($id, $condition)
     {
-          $this->managementUserService->updateStatus($id, $condition);
-          return redirect()->route('managementuser.index')->with('message', 'Data tersebut telah diubah.');
+        $this->managementUserService->updateStatus($id, $condition);
+        return redirect()->route('managementuser.index')->with('message', 'Data tersebut telah diubah.');
     }
 
     public function updPassword(ManagementUserPasswordRequest $request)
@@ -101,24 +101,22 @@ class ManagementUserController extends Controller
 
     public function profile()
     {
-        $getData = $this->managementUserService->getDataUserJoinRoleById();
-          return view($this->routeView.'profileUser', compact('getData'));
+        return view($this->routeViewProfile.'indexProfile');
     }
 
     public function updatepasswordByUser(ManagementUserPasswordRequest $request)
     {
-      // dd($request->all());
-      if($request->password != $request->passwordConfirmation) {
-        return redirect()->route('managementuser.profile')->with('messagefail', 'Password dan Konfirmasi tidak valid.');
-      }
+        if($request->password != $request->passwordConfirmation) {
+            return redirect()->route('managementuser.profile')->with('messagefail', 'Password dan Konfirmasi tidak valid.');
+        }
 
-      $get = $this->managementUserService->getDataUsersById($request->id);
-      if(Hash::check($request->oldPassword, $get->password)) {
-        $get = $this->managementRoleService->updatepasswordByUser($request->id);
-        return redirect()->route('managementuser.profile')->with('message', 'Data tersebut telah diubah.');
-      } else {
-        return redirect()->route('managementuser.profile')->with('messagefail', 'Password lama tidak valid.');
-      }
+        $get = $this->managementUserService->getDataUsersById($request->id);
+        if(Hash::check($request->oldPassword, $get->password)) {
+            $get = $this->managementRoleService->updatepasswordByUser($request->id);
+            return redirect()->route('managementuser.profile')->with('message', 'Data tersebut telah diubah.');
+        } else {
+            return redirect()->route('managementuser.profile')->with('messagefail', 'Password lama tidak valid.');
+        }
     }
 
     public function lockscreen(LockRequest $request)

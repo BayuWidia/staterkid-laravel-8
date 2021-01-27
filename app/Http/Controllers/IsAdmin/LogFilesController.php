@@ -36,8 +36,8 @@ class LogFilesController extends Controller
 
     public function index()
     {
-          $getDataLogFiles = $this->logFilesService->getDataLogFiles();
-          return view($this->routeView.'indexLogFiles', compact('getDataLogFiles'));
+        $getDataLogFiles = $this->logFilesService->getDataLogFiles();
+        return view($this->routeView.'indexLogFiles', compact('getDataLogFiles'));
     }
 
     public function show($fileName)

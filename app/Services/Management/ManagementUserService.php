@@ -127,11 +127,13 @@ class ManagementUserService
         $result = $this->managementuserInterface->update($data, $id);
     }
 
-    public function updateCountLogin($getCounter, $id)
+    public function updateCountLogin($getCounter, $latLoginAt, $latLoginIp, $id, $auth)
     {
         $data = array('id_master_users' => $id,
                       'login_count'     => $getCounter,
-                      'updated_by'      => Auth::user()->username);
+                      'last_login_at'   => $latLoginAt,
+                      'last_login_ip'   => $latLoginIp,
+                      'updated_by'      => $auth);
         $result = $this->managementuserInterface->update($data, $id);
     }
 }

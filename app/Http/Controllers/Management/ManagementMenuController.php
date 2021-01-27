@@ -36,8 +36,8 @@ class ManagementMenuController extends Controller
 
     public function index()
     {
-          $data = $this->managementMenuService->getDataMenus();
-          return view($this->routeView.'indexManagementMenu', compact('data'));
+        $data = $this->managementMenuService->getDataMenus();
+        return view($this->routeView.'indexManagementMenu', compact('data'));
     }
 
     public function store(Request $request)
@@ -54,8 +54,8 @@ class ManagementMenuController extends Controller
 
     public function updateStatus($id, $condition, $level)
     {
-          $this->managementMenuService->updateStatus($id, $condition, $level);
-          return redirect()->route('managementmenu.index')->with('message', 'Data tersebut telah diubah.');
+        $this->managementMenuService->updateStatus($id, $condition, $level);
+        return redirect()->route('managementmenu.index')->with('message', 'Data tersebut telah diubah.');
     }
 
     public function getDataMenusSecondByIdMasterMenus($id)
